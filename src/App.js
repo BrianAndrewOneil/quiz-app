@@ -1,89 +1,102 @@
-import React, { useState } from 'react';
-import questionsData from "./questionsData"
-import Navbar from './components/Navbar'
+import React, { useState, useEffect } from 'react';
+import questions from './questionsData';
+import Navbar from './components/Navbar';
 
 export default function App() {
-	const questions = [
-		{
-			questionText: 'What is the capital of France?',
-			answerOptions: [
-				{ answerText: 'New York', isCorrect: false },
-				{ answerText: 'London', isCorrect: false },
-				{ answerText: 'Paris', isCorrect: true },
-				{ answerText: 'Dublin', isCorrect: false },
-			],
-		},
-		{
-			questionText: 'Who is CEO of Tesla?',
-			answerOptions: [
-				{ answerText: 'Jeff Bezos', isCorrect: false },
-				{ answerText: 'Elon Musk', isCorrect: true },
-				{ answerText: 'Bill Gates', isCorrect: false },
-				{ answerText: 'Tony Stark', isCorrect: false },
-			],
-		},
-		{
-			questionText: 'The iPhone was created by which company?',
-			answerOptions: [
-				{ answerText: 'Apple', isCorrect: true },
-				{ answerText: 'Intel', isCorrect: false },
-				{ answerText: 'Amazon', isCorrect: false },
-				{ answerText: 'Microsoft', isCorrect: false },
-			],
-		},
-		{
-			questionText: 'How many Harry Potter books are there?',
-			answerOptions: [
-				{ answerText: '1', isCorrect: false },
-				{ answerText: '4', isCorrect: false },
-				{ answerText: '6', isCorrect: false },
-				{ answerText: '7', isCorrect: true },
-			],
-		},
-	];
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [showScore, setShowScore] = useState(false);
+  const [score, setScore] = useState(0);
 
-	const [currentQuestion, setCurrentQuestion] = useState(0);
-	const [showScore, setShowScore] = useState(false);
-	const [score, setScore] = useState(0);
+  useEffect(() => {
+    const storedAnswer = localStorage.getItem(`question_${questions[currentQuestion].id}`);
+    if (storedAnswer) {
+      setSelectedAnswer(storedAnswer);
+    }
+  }, [currentQuestion]);
 
-	const handleAnswerOptionClick = (isCorrect) => {
-		if (isCorrect) {
-			setScore(score + 1);
-		}
+  const handleAnswerOptionClick = (selectedAnswer) => {
+	localStorage.setItem(`question_${questions[currentQuestion].id}`, selectedAnswer);
+	setSelectedAnswer(selectedAnswer);
+  };
+  
 
-		const nextQuestion = currentQuestion + 1;
-		if (nextQuestion < questions.length) {
-			setCurrentQuestion(nextQuestion);
-		} else {
-			setShowScore(true);
-		}
-	};
-	return (
-		<div className='container'>
-			<Navbar />
-			<main>
-				<div className='app'>
-					{showScore ? (
-						<div className='score-section'>
-							You scored {score} out of {questions.length}
-						</div>
-					) : (
-						<>
-							<div className='question-section'>
-								<div className='question-count'>
-									<span>Question {currentQuestion + 1} of {questions.length}</span>
-								</div>
-								<div className='question-text'>{questions[currentQuestion].questionText}</div>
-							</div>
-							<div className='answer-section'>
-								{questions[currentQuestion].answerOptions.map((answerOption) => (
-									<button onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
-								))}
-							</div>
-						</>
-					)}
-				</div>
-			</main>
-		</div>
-	);
+  const handleNextQuestion = () => {
+	const nextQuestion = currentQuestion + 1;
+	if (nextQuestion < questions.length) {
+	  setCurrentQuestion(nextQuestion);
+	  setSelectedAnswer(localStorage.getItem(`question_${questions[nextQuestion].id}`) || null);
+	} else {
+	  setShowScore(true);
+	}
+  };
+  
+  const handlePrevQuestion = () => {
+	const prevQuestion = currentQuestion - 1;
+	if (prevQuestion >= 0) {
+	  setCurrentQuestion(prevQuestion);
+	  setSelectedAnswer(localStorage.getItem(`question_${questions[prevQuestion].id}`) || null);
+	}
+  };
+
+  const handleClearAnswers = () => {
+	// To set the values in localStorage to "null" we can do this:
+	// Object.keys(localStorage).forEach((key) => {
+	//   localStorage.setItem(key, null);
+	// });
+	// Or, we can wipe all localStorage completely:
+	localStorage.clear();
+  
+	// Reset the selected answer state to null
+	setSelectedAnswer(null);
+  };
+  
+
+  return (
+    <div className='container'>
+      <Navbar />
+      <main>
+        <div className='app'>
+          {showScore ? (
+            <div className='score-section'>
+              You scored {score} out of {questions.length}
+            </div>
+          ) : (
+            <>
+              <div className='question-section'>
+                <div className='question-count'>
+                  <span>
+                    Question {currentQuestion + 1} of {questions.length}
+                  </span>
+                </div>
+                <div className='question-text'>
+                  {questions[currentQuestion].questionText}
+                </div>
+              </div>
+              <div className='answer-section'>
+			  	{questions[currentQuestion].answerOptions.map((answerOption) => (
+					<button
+						key={answerOption.id}
+						onClick={() => handleAnswerOptionClick(answerOption.answerText)}
+						className={selectedAnswer === answerOption.answerText ? 'selected' : ''}
+					>
+						{answerOption.answerText}
+					</button>
+				))}
+
+              </div>
+              <div className='prev-next-buttons'>
+                <button onClick={handlePrevQuestion}>Prev</button>
+                <button onClick={handleNextQuestion}>Next</button>
+              </div>
+			  <div className='score-clear-buttons'>
+                <button onClick={handlePrevQuestion}>Score My Quiz</button>
+                <button onClick={handleClearAnswers}>Clear My Answers</button>
+              </div>
+            </>
+          )}
+        </div>
+      </main>
+    </div>
+  );
 }

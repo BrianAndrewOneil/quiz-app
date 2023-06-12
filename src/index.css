@@ -122,6 +122,58 @@ button {
   margin-bottom: 5px;
 }
 
+button.selected {
+  background-color: #555e7d;
+}
+
+.prev-next-buttons {
+  /* width: 100%; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-top: 2px;
+  margin-top: 10px;
+  gap: 20px;
+}
+
+.prev-next-buttons > button {
+  margin-top: 20px;
+  width: 25%;
+  justify-content: center;
+  color: #252f1a;
+  background-color: #e2eddd;
+  border: 0px;
+}
+
+.score-clear-buttons {
+  /* width: 100%; */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  border-top: 2px solid gray;
+  margin-top: 10px;
+  gap: 20px;
+}
+
+.score-clear-buttons > button {
+  margin-top: 10px;
+  width: 33%;
+  justify-content: center;
+
+  width: 100%;
+  font-size: 16px;
+  color: #e2eddd;
+  background-color: #d27017;
+  border-radius: 15px;
+  display: flex;
+  padding: 5px;
+  justify-content: flex-start;
+  align-items: center;
+  /* border: 5px solid #234668; */
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
 .correct {
   background-color: #2f922f;
 }
