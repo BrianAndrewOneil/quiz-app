@@ -4,37 +4,35 @@ import Navbar from './components/Navbar';
 
 export default function App() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [selectedAnswerID, setSelectedAnswerID] = useState(null);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
 
   useEffect(() => {
     const storedAnswer = localStorage.getItem(`question_${questions[currentQuestion].id}`);
     if (storedAnswer) {
-      setSelectedAnswer(storedAnswer);
+      setSelectedAnswerID(storedAnswer);
     }
   }, [currentQuestion]);
 
-  const handleAnswerOptionClick = (selectedAnswer) => {
-	localStorage.setItem(`question_${questions[currentQuestion].id}`, selectedAnswer);
-	setSelectedAnswer(selectedAnswer);
+  const handleAnswerOptionClick = (selectedAnswerID) => {
+	localStorage.setItem(`question_${questions[currentQuestion].id}`, selectedAnswerID);
+	setSelectedAnswerID(selectedAnswerID);
   };
   
   const handleNextQuestion = () => {
 	const nextQuestion = currentQuestion + 1;
 	if (nextQuestion < questions.length) {
 	  setCurrentQuestion(nextQuestion);
-	  setSelectedAnswer(localStorage.getItem(`question_${questions[nextQuestion].id}`) || null);
-	} else {
-	  setShowScore(true);
-	}
+	  setSelectedAnswerID(localStorage.getItem(`question_${questions[nextQuestion].id}`) || null);
+	  }
   };
   
   const handlePrevQuestion = () => {
 	const prevQuestion = currentQuestion - 1;
 	if (prevQuestion >= 0) {
 	  setCurrentQuestion(prevQuestion);
-	  setSelectedAnswer(localStorage.getItem(`question_${questions[prevQuestion].id}`) || null);
+	  setSelectedAnswerID(localStorage.getItem(`question_${questions[prevQuestion].id}`) || null);
 	}
   };
 
@@ -47,14 +45,14 @@ export default function App() {
 	localStorage.clear();
   
 	// Reset the selected answer state to null
-	setSelectedAnswer(null);
+	setSelectedAnswerID(null);
   };
 
   const handleScoreQuiz = () => {
     let finalScore = 0;
     questions.forEach((question) => {
       const storedAnswer = localStorage.getItem(`question_${question.id}`);
-      const correctAnswer = question.correctAnswer;
+      const correctAnswer = question.correctAnswerID;
       if (storedAnswer === correctAnswer) {
         finalScore += 1;
       }
@@ -87,12 +85,12 @@ export default function App() {
 							<div className="px-4" action="">
 								<p>{questions[currentQuestion].questionText}</p>
 
-								<div className="d-grid gap-2 col-8">
+								<div className="d-grid gap-2 col-9">
 									{questions[currentQuestion].answerOptions.map((answerOption) => (
 										<button
 											key={answerOption.id}
-											onClick={() => handleAnswerOptionClick(answerOption.answerText)}
-											className={selectedAnswer === answerOption.answerText ? 'btn btn-primary text-start' : 'btn btn-outline-primary text-start'}
+											onClick={() => handleAnswerOptionClick(answerOption.answerID)}
+											className={selectedAnswerID === answerOption.answerID ? 'btn btn-primary text-start' : 'btn btn-outline-primary text-start'}
 										>
 											{answerOption.answerText}
 										</button>
