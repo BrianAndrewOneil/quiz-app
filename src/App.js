@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import questions from './questionsData';
 import Navbar from './components/Navbar';
 import QuestionCard from './components/QuestionCard';
