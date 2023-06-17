@@ -1,6 +1,6 @@
-# A Quiz App Coded in React that Uses LocalStorage
+# A Quiz App in React that Uses LocalStorage
 
-This is a single-page app that can handle any number of questions. The user can navigate through the quiz, answer the questions, and see their previous answers and update those if they'd like. Then, when the user is ready, they can have their quiz scored. The user can close their browser and return to the quiz later, and their previous answers will be saved. They can also clear their answers and start again.
+This quiz app can handle any number of questions. The user can navigate through the quiz, answer the questions, and see their previous answers and update those if they'd like. Then, when the user is ready, they can have their quiz scored and see how they did. The user can close their browser and return to the quiz later, and their previous answers will be saved. They can also clear their answers and start again.
 
 **Link to project:** https://quiz-app.netlify.app/
 
