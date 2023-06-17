@@ -37,6 +37,7 @@ export default function App() {
 	localStorage.clear();
 	// and then reset the current selected-answer state to null.
 	setSelectedAnswerID(null);
+	setCurrentQuestion(0);
   };
 
   const handleRetakeQuiz = () => {
