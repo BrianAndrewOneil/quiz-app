@@ -4,7 +4,7 @@ This is a single-page app that can handle any number of questions. The user can 
 
 ## How It's Made
 
-**Tech used:** HTML, CSS (bootstrap), and React. I use local storage to save the user's answers so that they can close their browser and return to the quiz at a later time without losing their work.
+**Tech used:** HTML, CSS (bootstrap), and React. I use the browser's native localStorage to save the user's answers so that they can close their browser and return to the quiz at a later time without losing their work.
 
 ## To Run It Yourself
 
