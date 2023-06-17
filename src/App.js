@@ -45,7 +45,6 @@ export default function App() {
     let finalScore = 0;
     questions.forEach((question) => {
       const storedAnswer = localStorage.getItem(`question_${question.id}`);
-      //const correctAnswer = question.answerID;
       if (storedAnswer === question.correctResponse) {
         finalScore += 1;
       }
@@ -89,7 +88,7 @@ export default function App() {
 										</button>
 									))}
 								
-									<div className="d-grid gap-3 pt-3 d-md-flex  justify-content-md-end">
+									<div className="d-grid gap-3 pt-3 d-md-flex  justify-content-md-center">
 										<button onClick={handlePrevQuestion} type="button" className="btn btn-primary btn-sm">Prev</button>
 										<button onClick={handleNextQuestion} type="button" className="btn btn-primary btn-sm">Next</button>
 									</div>
