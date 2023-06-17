@@ -9,7 +9,7 @@ const questions = [
 			{ answerID: 'd', answerText: 'Raphael'},
 		],
 		correctResponse: 'c',
-		questionRationale: 'This option is correct because...',
+		questionRationale: `Michelangelo painted the chapel's ceiling between 1508 and 1512 under the patronage of Pope Julius II.`,
 	},
 	{
 		id: 2,	
@@ -21,7 +21,7 @@ const questions = [
 			{ answerID: 'd', answerText: 'Franklin Pierce'},
 		],
 		correctResponse: 'b',
-		questionRationale: 'This option is correct because...',
+		questionRationale: `John Adams served only a single term. He was the second president of the United States. George Washington, the first US president, served two terms.`,
 	},
 	{
 		id: 3,	
@@ -33,7 +33,7 @@ const questions = [
 			{ answerID: 'd', answerText: 'Microsoft'},
 		],
 		correctResponse: 'a',
-		questionRationale: 'This option is correct because...',
+		questionRationale: `The first-generation iPhone was announced by then-Apple CEO Steve Jobs on January 9, 2007. It has been in production since.`,
 	},
 	{
 		id: 4,	
@@ -45,7 +45,7 @@ const questions = [
 			{ answerID: 'd', answerText: 'Dallas'},
 		],
 		correctResponse: 'a',
-		questionRationale: 'This option is correct because...',
+		questionRationale: `Austin is the capital of Texas. Houston, San Antonio, and Dallas all have larger populations.`,
 	},
 ]
 

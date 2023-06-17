@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import questions from './questionsData';
 import Navbar from './components/Navbar';
+import QuestionCard from './components/QuestionCard';
+import ResultsCard from './components/ResultsCard';
+import Footer from './components/Footer';
 
 export default function App() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -30,15 +33,17 @@ export default function App() {
   };
 
   const handleClearAnswers = () => {
-	// To set the values in localStorage to "null" we can do this:
-	// Object.keys(localStorage).forEach((key) => {
-	//   localStorage.setItem(key, null);
-	// });
-	// Or, we can wipe all localStorage completely:
+	// Wipe all localStorage completely,
 	localStorage.clear();
-  
-	// Reset the selected answer state to null
+	// and then reset the current selected-answer state to null.
 	setSelectedAnswerID(null);
+  };
+
+  const handleRetakeQuiz = () => {
+	localStorage.clear();
+	setSelectedAnswerID(null);
+	setShowScore(false);
+	setCurrentQuestion(0);
   };
 
   const handleScoreQuiz = () => {
@@ -51,63 +56,41 @@ export default function App() {
     });
     setScore(finalScore);
     setShowScore(true);
+	setCurrentQuestion(0);
   };
 
   return (
     <div>
       <Navbar />
-      <main className="container mt-5">
+      <main className="container mt-5  min-vh-100">
         <div className="p-3 mt-10">
           {showScore ? (
-            <div>
-              You scored {score} out of {questions.length}
-            </div>
-          ) : (
-            <>
-            <div className='mx-0 mx-sm-auto'>
-				<div className="row">
-    			<div className="col-md-6 offset-md-3">
-
-					<div className='card shadow p-3 mb-5 bg-body-tertiary rounded'>
-						<div className="card-body">
-							<h5 className="card-title">
-								Question {currentQuestion + 1} of {questions.length}
-							</h5>
-							<hr />
-							<div className="px-4" action="">
-								<p>{questions[currentQuestion].questionText}</p>
-
-								<div className="d-grid gap-2 col-9">
-									{questions[currentQuestion].answerOptions.map((answerOption) => (
-										<button
-											key={answerOption.id}
-											onClick={() => handleAnswerOptionClick(answerOption.answerID)}
-											className={selectedAnswerID === answerOption.answerID ? 'btn btn-dark text-start' : 'btn btn-outline-dark text-start'}
-										>
-											{answerOption.answerText}
-										</button>
-									))}
-								
-									<div className="d-grid gap-3 pt-3 d-md-flex  justify-content-md-center">
-										<button onClick={handlePrevQuestion} type="button" className="btn btn-primary btn-sm">Prev</button>
-										<button onClick={handleNextQuestion} type="button" className="btn btn-primary btn-sm">Next</button>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div className="card-footer pt-3 d-grid gap-4 d-md-flex">
-							<button onClick={handleScoreQuiz} type="button" className="btn btn-success">Score My Quiz</button>
-							<button onClick={handleClearAnswers} type="button" className="btn btn-danger">Clear My Answers</button>
-						</div>
-					</div>
-                </div></div>
-			</div>
-              
-            </>
+			<ResultsCard
+				score={score}	
+				quizLength={questions.length}
+				question={questions[currentQuestion]}
+              	selectedAnswerID={selectedAnswerID}
+              	handleAnswerOptionClick={handleAnswerOptionClick}
+              	handleNextQuestion={handleNextQuestion}
+              	handlePrevQuestion={handlePrevQuestion}
+				handleRetakeQuiz={handleRetakeQuiz}
+            />
+          	) : (
+            <QuestionCard
+				quizLength={questions.length}
+				question={questions[currentQuestion]}
+              	selectedAnswerID={selectedAnswerID}
+              	handleAnswerOptionClick={handleAnswerOptionClick}
+              	handleNextQuestion={handleNextQuestion}
+              	handlePrevQuestion={handlePrevQuestion}
+              	handleScoreQuiz={handleScoreQuiz}
+              	handleClearAnswers={handleClearAnswers}
+            />
           )}
         </div>
-      </main>
+      <Footer />
+	  </main>
+	  
     </div>
   );
 }

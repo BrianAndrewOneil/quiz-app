@@ -2,16 +2,6 @@ import React from "react"
 
 export default function Navbar() {
     return (
-        // <nav>
-        //     <h3 className="nav--logo_text">Quiz App Built with React</h3>
-        //     <h4 className="nav--title">Brian O'Neil</h4>
-        // </nav>
-        
-        // <nav className="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
-        //     <div className="container-fluid navbar-brand">Quiz App Built with React | Brian O'Neil
-        //     </div>
-        // </nav>
-
         <nav className="navbar navbar-dark bg-dark" aria-label="Dark offcanvas navbar">
             <div className="container-fluid">
                 <a className="navbar-brand" href="#">Mobile-First Quiz App Built with React</a>
