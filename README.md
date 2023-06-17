@@ -2,6 +2,10 @@
 
 This is a single-page app that can handle any number of questions. The user can navigate through the quiz, answer the questions, and see their previous answers and update those if they'd like. Then, when the user is ready, they can have their quiz scored. The user can close their browser and return to the quiz later, and their previous answers will be saved. They can also clear their answers and start again.
 
+**Link to project:** https://quiz-app.netlify.app/
+
+<img alt="image of web app" src="https://brianoneil.netlify.app/assets/img/portfolio/quiz.png" width=50%>
+
 ## How It's Made
 
 **Tech used:** HTML, CSS (bootstrap), and React. I use the browser's native localStorage to save the user's answers so that they can close their browser and return to the quiz at a later time without losing their work.
