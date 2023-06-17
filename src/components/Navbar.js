@@ -32,7 +32,7 @@ export default function Navbar() {
                             <a className="nav-link" href="https://brianoneil.netlify.app/">About me</a>
                             </li>
                             <li className="nav-item">
-                            <a className="nav-link" href="https://react.dev/">About react.js</a>
+                            <a className="nav-link" href="https://react.dev/">About react</a>
                             </li>
                             <li className="nav-item">
                             <a className="nav-link" href="https://github.com/BrianAndrewOneil/quiz-app">See this code on my github</a>

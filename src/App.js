@@ -8,13 +8,6 @@ export default function App() {
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
 
-  useEffect(() => {
-    const storedAnswer = localStorage.getItem(`question_${questions[currentQuestion].id}`);
-    if (storedAnswer) {
-      setSelectedAnswerID(storedAnswer);
-    }
-  }, [currentQuestion]);
-
   const handleAnswerOptionClick = (selectedAnswerID) => {
 	localStorage.setItem(`question_${questions[currentQuestion].id}`, selectedAnswerID);
 	setSelectedAnswerID(selectedAnswerID);
@@ -52,8 +45,8 @@ export default function App() {
     let finalScore = 0;
     questions.forEach((question) => {
       const storedAnswer = localStorage.getItem(`question_${question.id}`);
-      const correctAnswer = question.correctAnswerID;
-      if (storedAnswer === correctAnswer) {
+      //const correctAnswer = question.answerID;
+      if (storedAnswer === question.correctResponse) {
         finalScore += 1;
       }
     });
@@ -90,15 +83,15 @@ export default function App() {
 										<button
 											key={answerOption.id}
 											onClick={() => handleAnswerOptionClick(answerOption.answerID)}
-											className={selectedAnswerID === answerOption.answerID ? 'btn btn-primary text-start' : 'btn btn-outline-primary text-start'}
+											className={selectedAnswerID === answerOption.answerID ? 'btn btn-dark text-start' : 'btn btn-outline-dark text-start'}
 										>
 											{answerOption.answerText}
 										</button>
 									))}
 								
 									<div className="d-grid gap-3 pt-3 d-md-flex  justify-content-md-end">
-										<button onClick={handlePrevQuestion} type="button" className="btn btn-primary">Prev</button>
-										<button onClick={handleNextQuestion} type="button" className="btn btn-primary">Next</button>
+										<button onClick={handlePrevQuestion} type="button" className="btn btn-primary btn-sm">Prev</button>
+										<button onClick={handleNextQuestion} type="button" className="btn btn-primary btn-sm">Next</button>
 									</div>
 								</div>
 							</div>
