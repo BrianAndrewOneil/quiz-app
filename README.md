@@ -10,6 +10,10 @@ This quiz app can handle any number of questions. The user can navigate through 
 
 **Tech used:** HTML, CSS (bootstrap), and React. I use the browser's native localStorage to save the user's answers so that they can close their browser and return to the quiz at a later time without losing their work.
 
+## Lessons Learned
+
+This was a good refersher on using the features of react, including components, props, states, etc. 
+
 ## To Run It Yourself
 
 In the project directory, you can run:
