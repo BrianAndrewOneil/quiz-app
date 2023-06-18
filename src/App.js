@@ -7,7 +7,7 @@ import Footer from './components/Footer';
 
 export default function App() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [selectedAnswerID, setSelectedAnswerID] = useState(null);
+  const [selectedAnswerID, setSelectedAnswerID] = useState(localStorage.getItem(`question_1`) || null);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
 

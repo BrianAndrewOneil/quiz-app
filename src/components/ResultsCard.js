@@ -15,10 +15,13 @@ const ResultsCard = ({
       <div className='row'>
         <div className='col-md-6 offset-md-3'>
           <div className='card shadow p-3 mb-5 bg-body-tertiary rounded'>
+            <div className='card-header'>
+              <h3 className='card-title text-primary-emphasis text-center'>
+                Your score: {score} of {quizLength} 
+              </h3>
+            </div>
             <div className='card-body'>
-                <h4 className='card-title'>
-                    You answered {score} of {quizLength} correctly. 
-                </h4>
+              
               <h5 className='card-title'>
                 Question {question.id} of {quizLength}
               </h5>
@@ -62,10 +65,10 @@ const ResultsCard = ({
                 <hr />
                 {selectedAnswerID === question.correctResponse ? (
                   <p className="text-success">You answered this question correctly.</p>
-                  ) :  (
+                ) : (
                   <p className="text-danger">You answered this question incorrectly.</p>
-                  )
-                }
+                )}
+                
                 <p><strong>Explanation</strong><br/>
                 {question.questionRationale}</p>
 
