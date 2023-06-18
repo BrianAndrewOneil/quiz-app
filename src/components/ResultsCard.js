@@ -63,11 +63,10 @@ const ResultsCard = ({
                 </div>
 
                 <hr />
-                {selectedAnswerID === question.correctResponse ? (
-                  <p className="text-success">You answered this question correctly.</p>
-                ) : (
-                  <p className="text-danger">You answered this question incorrectly.</p>
-                )}
+                {selectedAnswerID === question.correctResponse 
+                  ? <p className="text-success">You answered this question correctly.</p>
+                  : <p className="text-danger">You answered this question incorrectly.</p>
+                }
                 
                 <p><strong>Explanation</strong><br/>
                 {question.questionRationale}</p>
