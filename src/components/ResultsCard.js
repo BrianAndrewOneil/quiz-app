@@ -9,6 +9,7 @@ const ResultsCard = ({
     handleNextQuestion,
     handlePrevQuestion,
     handleRetakeQuiz,
+    handleScoreReportToggle,
 }) => {
   return (
     <div className='mx-0 mx-sm-auto'>
@@ -16,9 +17,12 @@ const ResultsCard = ({
         <div className='col-md-6 offset-md-3'>
           <div className='card shadow p-3 mb-5 bg-body-tertiary rounded'>
             <div className='card-header'>
-              <h3 className='card-title text-primary-emphasis text-center'>
-                Your score: {score} of {quizLength} 
-              </h3>
+                <h2 className='card-title text-primary-emphasis text-center'>
+                    Results Report
+                </h2>
+                <h3 className='card-title text-primary-emphasis text-center'>
+                    Your Results by Question 
+                </h3>
             </div>
             <div className='card-body'>
               
@@ -29,15 +33,19 @@ const ResultsCard = ({
               <div className='px-4' action=''>
                 <p>{question.questionText}</p>
 
-                <div className='d-grid gap-2 col-9'>
+                <div className='d-grid gap-2 col-11'>
                   {question.answerOptions.map((answerOption) => (
                     <button
                       key={answerOption.answerID}
                       onClick={() => handleAnswerOptionClick(answerOption.answerID)}
                       className={
-                        selectedAnswerID === answerOption.answerID
-                          ? 'btn btn-dark text-start disabled'
-                          : 'btn btn-outline-dark text-start disabled'
+                        selectedAnswerID === answerOption.answerID ? 
+                        'btn btn-dark text-start disabled'
+                        : 
+                        answerOption.answerID === question.correctResponse ?
+                        'btn btn-success text-start disabled'
+                        :
+                        'btn btn-outline-dark text-start disabled'
                       }
                     >
                       {answerOption.answerText}
@@ -75,9 +83,12 @@ const ResultsCard = ({
             </div>
 
             <div className='card-footer pt-3 d-grid gap-4 d-md-flex'>
-              <button onClick={handleRetakeQuiz} type='button' className='btn btn-danger'>
-                Retake This Quiz
-              </button>
+                <button onClick={handleScoreReportToggle} type='button' className='btn btn-primary'>
+                    Return to Results Report
+                </button>
+                <button onClick={handleRetakeQuiz} type='button' className='btn btn-danger'>
+                    Retake This Quiz
+                </button>
             </div>
           </div>
         </div>

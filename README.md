@@ -18,7 +18,9 @@ This was a good refersher on using the features of react, including components, 
 
 In the project directory, you can run:
 
-### `npm start`
+- clone repo
+- npm install
+- npm start
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.

@@ -23,7 +23,7 @@ const QuestionCard = ({
               <div className='px-4' action=''>
                 <p>{question.questionText}</p>
 
-                <div className='d-grid gap-2 col-9'>
+                <div className='d-grid gap-2 col-12'>
                   {question.answerOptions.map((answerOption) => (
                     <button
                       key={answerOption.answerID}
