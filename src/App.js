@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import questions from './questionsData';
 import Navbar from './components/Navbar';
 import QuestionCard from './components/QuestionCard';
-import ResultsCard from './components/ResultsCard';
 import ScoreReportCard from './components/ScoreReportCard';
 import Footer from './components/Footer';
 
@@ -10,7 +9,6 @@ export default function App() {
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [selectedAnswerID, setSelectedAnswerID] = useState(localStorage.getItem(`question_1`) || null);
 	const [showScore, setShowScore] = useState(false);
-	const [showScoreReport, setShowScoreReport] = useState(false);
 	const [score, setScore] = useState(0);
 
 	const handleAnswerOptionClick = (selectedAnswerID) => {
@@ -59,7 +57,6 @@ export default function App() {
 		});
 		setScore(finalScore);
 		setShowScore(true);
-		setShowScoreReport(true);
 		setCurrentQuestion(0);
 		setSelectedAnswerID(localStorage.getItem(`question_1`) || null);
 	};
@@ -76,35 +73,23 @@ export default function App() {
         return Math.round(domainScore/domainQuestions.length*100)
     }
 
-	const handleScoreReportToggle = () => {
-		setShowScoreReport(currentChoice => !currentChoice);
-	}
-
 	return (
 		<div>
 			<Navbar />
 			<main className="container mt-5  min-vh-100">
 				<div className="p-3 mt-10">
-					{showScore && showScoreReport ? (
+					{showScore? (
 						<ScoreReportCard
 						score={score}	
 						quizLength={questions.length}
 						questions={questions}
 						domainScore={domainScore}
 						handleRetakeQuiz={handleRetakeQuiz}
-						handleScoreReportToggle={handleScoreReportToggle}
-						/>
-						) : showScore && !showScoreReport ? (
-						<ResultsCard
-							score={score}	
-							quizLength={questions.length}
-							question={questions[currentQuestion]}
-							selectedAnswerID={selectedAnswerID}
-							handleAnswerOptionClick={handleAnswerOptionClick}
-							handleNextQuestion={handleNextQuestion}
-							handlePrevQuestion={handlePrevQuestion}
-							handleRetakeQuiz={handleRetakeQuiz}
-							handleScoreReportToggle={handleScoreReportToggle}
+						question={questions[currentQuestion]}
+						selectedAnswerID={selectedAnswerID}
+						handleAnswerOptionClick={handleAnswerOptionClick}
+						handleNextQuestion={handleNextQuestion}
+						handlePrevQuestion={handlePrevQuestion}
 						/>
 						) : (
 						<QuestionCard
