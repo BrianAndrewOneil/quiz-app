@@ -4,7 +4,7 @@ This quiz app can handle any number of questions. The user can navigate through 
 
 **Link to project:** https://quiz-app.netlify.app/
 
-<img alt="image of web app" src="https://brianoneil.netlify.app/assets/img/portfolio/quiz.png" width=50%>
+<img alt="image of web app" src="https://brianoneil.netlify.app/assets/img/portfolio/quiz.gif" width=50%>
 
 ## How It's Made
 
