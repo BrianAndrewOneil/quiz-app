@@ -76,20 +76,20 @@ export default function App() {
 	return (
 		<div>
 			<Navbar />
-			<main className="container mt-5  min-vh-100">
+			<main className="container mt-3  min-vh-100">
 				<div className="p-3 mt-10">
 					{showScore? (
 						<ScoreReportCard
-						score={score}	
-						quizLength={questions.length}
-						questions={questions}
-						domainScore={domainScore}
-						handleRetakeQuiz={handleRetakeQuiz}
-						question={questions[currentQuestion]}
-						selectedAnswerID={selectedAnswerID}
-						handleAnswerOptionClick={handleAnswerOptionClick}
-						handleNextQuestion={handleNextQuestion}
-						handlePrevQuestion={handlePrevQuestion}
+							score={score}	
+							quizLength={questions.length}
+							questions={questions}
+							domainScore={domainScore}
+							handleRetakeQuiz={handleRetakeQuiz}
+							question={questions[currentQuestion]}
+							selectedAnswerID={selectedAnswerID}
+							handleAnswerOptionClick={handleAnswerOptionClick}
+							handleNextQuestion={handleNextQuestion}
+							handlePrevQuestion={handlePrevQuestion}
 						/>
 						) : (
 						<QuestionCard
