@@ -26,17 +26,17 @@ export default function ScoreReportCard (props){
                             <h4 className='card-title text-primary-emphasis text-center  pb-3'>
                                 {props.score} of {props.quizLength} Correct
                             </h4>
-                            <ul class="nav nav-tabs card-header-tabs" data-bs-tabs="tabs">
+                            <ul className="nav nav-tabs card-header-tabs" data-bs-tabs="tabs">
                                 <li className="nav-item">
-                                    <a class="nav-link active" aria-current="true" data-bs-toggle="tab" href="#overall">Your Overall Results</a>
+                                    <a className="nav-link active" aria-current="true" data-bs-toggle="tab" href="#overall">Your Overall Results</a>
                                 </li>
-                                <li class="nav-item">
+                                <li className="nav-item">
                                     <a className="nav-link" data-bs-toggle="tab" href="#items">Review Your Answers</a>
                                 </li>
                             </ul>
                         </div>
                         <div className='card-body tab-content'>
-                            <div class="tab-pane active" id="overall">
+                            <div className="tab-pane active" id="overall">
                                 <h4 className='card-title'>
                                     Results by Domain
                                 </h4>
@@ -59,7 +59,7 @@ export default function ScoreReportCard (props){
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane" id="items">
+                            <div className="tab-pane" id="items">
                                 <h4 className='card-title'>
                                     Question {props.question.id} of {props.quizLength}
                                 </h4>
@@ -90,6 +90,13 @@ export default function ScoreReportCard (props){
 
                                         <div className='d-grid gap-3 pt-3 d-md-flex  justify-content-md-center'>
                                             <button
+                                            onClick={props.handleFirstQuestion}
+                                            type='button'
+                                            className='btn btn-primary btn-sm'
+                                            >
+                                            First
+                                            </button>
+                                            <button
                                             onClick={props.handlePrevQuestion}
                                             type='button'
                                             className='btn btn-primary btn-sm'
@@ -103,6 +110,13 @@ export default function ScoreReportCard (props){
                                             >
                                             Next
                                             </button>
+                                            <button
+                                            onClick={props.handleLastQuestion}
+                                            type='button'
+                                            className='btn btn-primary btn-sm'
+                                            >
+                                            Last
+                                            </button>
                                         </div>
                                     </div>
 
@@ -110,7 +124,7 @@ export default function ScoreReportCard (props){
                                     {props.selectedAnswerID === props.question.correctResponse ? 
                                     <p className="text-success"> <FontAwesomeIcon icon={faCheck} style={{color: "#157246",}} /> You answered this question correctly.</p>
                                     : 
-                                    props.selectedAnswerID != props.question.correctResponse && props.selectedAnswerID !== null ?
+                                    props.selectedAnswerID !== props.question.correctResponse && props.selectedAnswerID !== null ?
                                     <p className="text-danger"> <FontAwesomeIcon icon={faXmark} style={{color: "#DC3545",}} /> You answered this question incorrectly.</p>
                                     : 
                                     <p className="text-danger"> <FontAwesomeIcon icon={faXmark} style={{color: "#DC3545",}} /> You did not answer this question.</p>

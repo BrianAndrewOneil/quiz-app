@@ -32,6 +32,17 @@ export default function App() {
 		}
 	};
 
+	const handleFirstQuestion = () => {
+		setCurrentQuestion(0);
+		setSelectedAnswerID(localStorage.getItem(`question_1`) || null);
+	};
+
+	const handleLastQuestion = () => {
+		const lastOne = questions.length
+		setCurrentQuestion(lastOne-1);
+		setSelectedAnswerID(localStorage.getItem(`question_${lastOne}`) || null);
+	};
+
 	const handleClearAnswers = () => {
 		// Wipe all localStorage completely,
 		localStorage.clear();
@@ -90,6 +101,8 @@ export default function App() {
 							handleAnswerOptionClick={handleAnswerOptionClick}
 							handleNextQuestion={handleNextQuestion}
 							handlePrevQuestion={handlePrevQuestion}
+							handleFirstQuestion={handleFirstQuestion}
+							handleLastQuestion={handleLastQuestion}
 						/>
 						) : (
 						<QuestionCard
