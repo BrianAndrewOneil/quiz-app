@@ -12,7 +12,7 @@ This quiz app can handle any number of questions. The user can navigate through 
 
 ## Lessons Learned
 
-This was a good refersher on using the features of react, including components, props, states, etc. 
+This was a good refersher on using the features of react, including components, props, state, etc. 
 
 ## To Run It Yourself
 

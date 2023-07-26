@@ -70,7 +70,7 @@ export default function ScoreReportCard (props){
                                         {props.question.answerOptions.map((answerOption) => (
                                             <button
                                                 key={answerOption.answerID}
-                                                onClick={() => props.handleAnswerOptionClick(answerOption.answerID)}
+                                                
                                                 className={
                                                     //answer was selected and is not correct
                                                     props.selectedAnswerID === answerOption.answerID && answerOption.answerID !== props.question.correctResponse ? 
@@ -87,8 +87,23 @@ export default function ScoreReportCard (props){
                                                 {answerOption.answerText}
                                             </button>
                                         ))}
+                                    </div>
 
-                                        <div className='d-grid gap-3 pt-3 d-md-flex  justify-content-md-center'>
+                                    {props.selectedAnswerID === props.question.correctResponse ? 
+                                    <p className="text-success"> <FontAwesomeIcon icon={faCheck} style={{color: "#157246",}} /> You answered this question correctly.</p>
+                                    : 
+                                    props.selectedAnswerID !== props.question.correctResponse && props.selectedAnswerID !== null ?
+                                    <p className="text-danger"> <FontAwesomeIcon icon={faXmark} style={{color: "#DC3545",}} /> You answered this question incorrectly.</p>
+                                    : 
+                                    <p className="text-danger"> <FontAwesomeIcon icon={faXmark} style={{color: "#DC3545",}} /> You did not answer this question.</p>
+                                    }
+                                    
+                                    <p><strong>Explanation</strong><br/>
+                                    {props.question.questionRationale}</p>
+
+                                    <hr />
+
+                                    <div className='d-grid gap-3 pt-3 d-md-flex  justify-content-md-center'>
                                             <button
                                             onClick={props.handleFirstQuestion}
                                             type='button'
@@ -118,20 +133,6 @@ export default function ScoreReportCard (props){
                                             Last
                                             </button>
                                         </div>
-                                    </div>
-
-                                    <hr />
-                                    {props.selectedAnswerID === props.question.correctResponse ? 
-                                    <p className="text-success"> <FontAwesomeIcon icon={faCheck} style={{color: "#157246",}} /> You answered this question correctly.</p>
-                                    : 
-                                    props.selectedAnswerID !== props.question.correctResponse && props.selectedAnswerID !== null ?
-                                    <p className="text-danger"> <FontAwesomeIcon icon={faXmark} style={{color: "#DC3545",}} /> You answered this question incorrectly.</p>
-                                    : 
-                                    <p className="text-danger"> <FontAwesomeIcon icon={faXmark} style={{color: "#DC3545",}} /> You did not answer this question.</p>
-                                    }
-                                    
-                                    <p><strong>Explanation</strong><br/>
-                                    {props.question.questionRationale}</p>
 
                                 </div>
                             </div>
