@@ -80,15 +80,15 @@ const questions = [
 	{
 		id: 7,
 		domain: '3. Technology',
-		questionText: 'The iPhone was created by which company?',
+		questionText: 'Who was the only person to win a Nobel Prize in two scientific fields?',
 		answerOptions: [
-			{ answerID: 'a', answerText: 'Apple'},
-			{ answerID: 'b', answerText: 'Intel'},
-			{ answerID: 'c', answerText: 'Amazon'},
-			{ answerID: 'd', answerText: 'Microsoft'},
+			{ answerID: 'a', answerText: 'Marie Curie'},
+			{ answerID: 'b', answerText: 'Albert Einstein'},
+			{ answerID: 'c', answerText: 'Gertrude Elion'},
+			{ answerID: 'd', answerText: 'Robert Oppenheimer'},
 		],
 		correctResponse: 'a',
-		questionRationale: `The first-generation iPhone was announced by then-Apple CEO Steve Jobs on January 9, 2007. It has been in production since.`,
+		questionRationale: `Marie Curie was was the first woman to win a Nobel Prize, the first person to win a Nobel Prize twice, and the only person to win a Nobel Prize in two scientific fields (Physics and Chemistry).`,
 	},
 	{
 		id: 8,
